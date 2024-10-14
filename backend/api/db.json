@@ -1,0 +1,10 @@
+{
+  "transacoes": [],
+  "contas": [
+    {
+      "id": "1",
+      "valor_total": 1500,
+      "numero_conta": "1232-9"
+    }
+  ]
+}
