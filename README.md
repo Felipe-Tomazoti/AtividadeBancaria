@@ -7,6 +7,8 @@ Para rodar o projeto depois de clonado:
 Abra o terminal, vá até backend -> api, e digite: npx json-server db.json<br/>
 Logo em seguida abra outro terminal, em atividade bancaria, e digite: flutter run
 
+Caso a página do projeto fique em Loading, aperte a tecla "Ctrl" + "F5" para recarregar a página limpando o cache.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
