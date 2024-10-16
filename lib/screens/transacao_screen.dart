@@ -1,5 +1,3 @@
-// lib/transacao_screen.dart
-
 import 'package:atividadebancaria/models/transacao_model.dart';
 import 'package:atividadebancaria/service/transacao_service.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +14,6 @@ class TransacaoScreen extends StatefulWidget {
 class _TransacaoScreenState extends State<TransacaoScreen> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _valorController = TextEditingController();
-  final TextEditingController _tipoController = TextEditingController();
   final TransacaoService api = TransacaoService();
   String message = "";
   List<Transacao> transacoes = [];
@@ -40,15 +37,7 @@ class _TransacaoScreenState extends State<TransacaoScreen> {
         return;
       }
 
-      String tipo = _tipoController.text.trim();
-      if (tipo.isEmpty) {
-        setState(() {
-          message = "Tipo não pode estar vazio.";
-        });
-        return;
-      }
-
-      Transacao transacao = Transacao(id: id, valor: valor, tipo: tipo);
+      Transacao transacao = Transacao(id: id, valor: valor);
 
       final result = await api.post(transacao);
       setState(() {
@@ -81,15 +70,7 @@ class _TransacaoScreenState extends State<TransacaoScreen> {
         return;
       }
 
-      String tipo = _tipoController.text.trim();
-      if (tipo.isEmpty) {
-        setState(() {
-          message = "Tipo não pode estar vazio.";
-        });
-        return;
-      }
-
-      Transacao transacao = Transacao(id: id, valor: valor, tipo: tipo);
+      Transacao transacao = Transacao(id: id, valor: valor);
 
       final result = await api.update(id, transacao);
       setState(() {
@@ -166,7 +147,6 @@ class _TransacaoScreenState extends State<TransacaoScreen> {
   void _clearFields() {
     _idController.clear();
     _valorController.clear();
-    _tipoController.clear();
     transacaoBuscada = null;
   }
 
@@ -174,7 +154,6 @@ class _TransacaoScreenState extends State<TransacaoScreen> {
   void dispose() {
     _idController.dispose();
     _valorController.dispose();
-    _tipoController.dispose();
     super.dispose();
   }
 
@@ -205,14 +184,6 @@ class _TransacaoScreenState extends State<TransacaoScreen> {
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: _tipoController,
-              decoration: const InputDecoration(
-                labelText: 'Tipo',
-                border: OutlineInputBorder(),
-              ),
             ),
             const SizedBox(height: 20),
             Row(
@@ -264,7 +235,6 @@ class _TransacaoScreenState extends State<TransacaoScreen> {
                   ),
                   Text('ID: ${transacaoBuscada!.id}'),
                   Text('Valor: ${transacaoBuscada!.valor}'),
-                  Text('Tipo: ${transacaoBuscada!.tipo}'),
                   const SizedBox(height: 20),
                 ],
               ),
@@ -289,7 +259,7 @@ class _TransacaoScreenState extends State<TransacaoScreen> {
                         child: ListTile(
                           title: Text('ID: ${transacao.id}'),
                           subtitle: Text(
-                            'Valor: ${transacao.valor}\nTipo: ${transacao.tipo}',
+                            'Valor: ${transacao.valor}\n',
                           ),
                         ),
                       );
