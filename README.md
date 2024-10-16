@@ -1,6 +1,11 @@
-# atividadebancaria
+# AtividadeBancaria
 
-A new Flutter project.
+Projeto Flutter utilizando classe abstrata com Generics.<br/>
+Primeira entrega: 15/10/2024.
+
+Para rodar o projeto depois de clonado:
+Abra o terminal, vá até backend -> api, e digite: npx json-server db.json<br/>
+Logo em seguida abra outro terminal, em atividade bancaria, e digite: flutter run
 
 ## Getting Started
 
